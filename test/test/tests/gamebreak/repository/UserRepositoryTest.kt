@@ -39,7 +39,7 @@ class UserRepositoryTest {
     }
 
     private fun whenTheUserLogsin(repository: UserRepository, nickName: String, password: String): User? =
-        repository.login("$nickName", "$password")
+        repository.login(nickName =  nickName, password =  password)
 
 
     private fun givenARepositoryOfUsers(): UserRepository = UserRepository
