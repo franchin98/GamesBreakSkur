@@ -1,8 +1,9 @@
 package repositories
 
 import data.Game
+import java.util.*
 
-object GameRepository {
+object GameRepository{
 
     private val games = mutableListOf<Game>()
 
@@ -20,14 +21,20 @@ object GameRepository {
         games.add(Game(11L, "Mario Kart 8", "2014", "Carreras", 6500.00, "https://media.vandal.net/m/45256/mario-kart-8-deluxe-201742811181_45.jpg"))
         games.add(Game(12L, "Dark Souls 3", "2016", "Accion", 50.75, "https://as.com/meristation/imagenes/2020/04/07/game_cover/136602131586253551.jpg"))
         games.add(Game(13L, "God of War: Ragnarok", "2022", "Aventura", 5350.00, "https://assets-prd.ignimgs.com/2022/07/25/9781506733494-1658716557072.jpg"))
+
+
     }
 
-    fun get() : List<Game> {
-        return emptyList() //TODO Implementar solucion para obtener todos los juegos
+    fun getGames() : List<Game> = games
+
+    fun getById(id: Long) : Game? {
+        for(game in games)
+            if(game.id == id) return game
+
+        return null
     }
 
-    fun getById(id: Long) : Game {
-        return games[0] //TODO Implementar solucion para obtener el juego solicitado
-    }
+
+
 
 }

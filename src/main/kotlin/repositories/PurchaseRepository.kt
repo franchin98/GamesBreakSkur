@@ -19,12 +19,25 @@ object PurchaseRepository {
         purchases.add(Purchase(10L, 1510L, 5L, 150.00, "2023/01/01"))
     }
 
-    fun add(purchase: Purchase) {
-        //TODO Implementar solucion para agregar una nueva compra
+
+    fun getTotalPurchases(): Int = purchases.size
+
+    fun add(purchase: Purchase): Boolean =
+        if(isValidPurchase(purchase)) purchases.add(purchase) else false
+
+
+    fun get() : List<Purchase> = purchases
+
+    private fun isValidPurchase(purchase: Purchase): Boolean {
+        var isValid = true
+
+        for(purchaseAux in purchases){
+            if(purchaseAux.userId == purchase.userId &&
+                purchaseAux.gameId == purchase.gameId)
+                isValid = false
+        }
+        return isValid
     }
 
-    fun get() : List<Purchase> {
-        return emptyList() //TODO Implementar solucion para obtener todos los juegos
-    }
 
 }

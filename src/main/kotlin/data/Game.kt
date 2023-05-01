@@ -8,3 +8,4 @@ data class Game(
     val price: Double,
     val permalink: String
 )
+
