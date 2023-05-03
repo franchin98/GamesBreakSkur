@@ -7,7 +7,8 @@ import interfaces.Intermediary
 import repositories.PurchaseRepository
 import java.time.LocalDate
 
-class Steam : Intermediary {
+class Steam : Company(),  Intermediary {
+
     override fun processPurchase(user: User, game: Game) {
         val commission: Double = game.price.times(0.02)
 
@@ -21,6 +22,7 @@ class Steam : Intermediary {
             if(PurchaseRepository.add(purchase)) {
                 user.makePurchase(purchase)
                 println("********* COMPRA REALIZADA CON ÉXITO *********")
+                applyCashback(user, purchase)
             } else
                 println("EL JUEGO SELECCIONADO YA SE ENCUENTRA EN LA BIBLIOTECA DE JUEGOS." +
                         "\nSELECCIONE UN JUEGO DISTINTO.")

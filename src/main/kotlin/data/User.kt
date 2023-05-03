@@ -1,6 +1,8 @@
 package data
 
 import repositories.PurchaseRepository
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.time.LocalDate
 
 
@@ -42,4 +44,16 @@ class User(private val id: Long, private val nickName: String,
     fun getCreatedDate(): LocalDate = createdDate
 
     fun getId(): Long = id
+    fun chargeMoney(amount: Double) {
+         if (amount > 0.0)
+             this.money += amount
+    }
+
+    fun showMoney(): String {
+        val format = DecimalFormat("#.##")
+        format.roundingMode = RoundingMode.DOWN
+        val money = format.format(this.money)
+        return "$$money"
+    }
+
 }

@@ -4,9 +4,9 @@ import data.Game
 import data.User
 import interfaces.Intermediary
 
-class Nakama : Intermediary {
+class Nakama : Company(), Intermediary {
     override fun processPurchase(user: User, game: Game) {
-        TODO("Not yet implemented")
+        // implementen este perritos
     }
 
 }

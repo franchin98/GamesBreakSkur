@@ -11,6 +11,7 @@ import repositories.UserRepository
 
 class Application {
     companion object {
+
         fun run(gameRepository: GameRepository, userRepository: UserRepository) {
             loginMenu(gameRepository, userRepository)
         }
@@ -45,7 +46,7 @@ class Application {
                 } while(response < 1 || response > 2)
 
                 if(response == 1)
-                    siginUpMenu(userRepository)
+                    //siginUpMenu(userRepository)
                 else{
                     println("\n¡Hasta luego!\n")
                     run(games, userRepository)
@@ -54,9 +55,9 @@ class Application {
 
         }
 
-        private fun siginUpMenu(userRepository: UserRepository) {
-            TODO("Not yet implemented")
-        }
+//        private fun siginUpMenu(userRepository: UserRepository) {
+//            implementar a futuro
+//        }
 
         private fun mainMenu(user: User) {
             println("\n******* ¡Bienvenido/a ${user.getNameComplete()}! *******")
@@ -73,6 +74,9 @@ class Application {
                 when(response) {
                     1 -> gamePurchaseMenu(user)
                     2 -> showPurchasedGamesOf(user)
+                    3 -> { println("**** Hasta Luego ****")
+                        run(GameRepository, UserRepository)
+                    }
                 }
 
             } while(response != 3)
@@ -90,13 +94,14 @@ class Application {
 
         private fun gamePurchaseMenu(user: User) {
             println("Sesión activa: ${user.getNameComplete()}" +
-                    "\nSaldo: ${user.getMoney()}")
+                    "\nSaldo: ${user.showMoney()}")
             println("\n***********************" +
                     "\n Seleccione una empresa:" +
                     "\n1. Epic Games" +
                     "\n2. Steam" +
                     "\n3. Nakama")
             print("\nIngrese la opción elegida: ")
+
 
             val response = readlnOrNull()?.toInt()
 
@@ -112,12 +117,11 @@ class Application {
             if (chosenGame != null)
                 intermediary.processPurchase(user, chosenGame)
 
-
         }
 
         private fun showAndChooseAvailableGames(): Game? {
-            println("********** JUEGOS DISPONIBLES **********")
 
+            println("********** JUEGOS DISPONIBLES **********")
             for(game in GameRepository.getGames())
                 println("${game.id} - $game")
 
